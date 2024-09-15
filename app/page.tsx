@@ -27,7 +27,7 @@ class Result {
 }
 
 export default function Home() {
-  const url = "https://saoke.doffylaw.org/?q=";
+  const url = "https://saokeapi.doffylaw.org/?q=";
   const [query, setQuery] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
