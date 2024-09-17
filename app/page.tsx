@@ -3,13 +3,13 @@ import { useState } from "react";
 
 // item structure to hold the data
 class Item {
-  id: number;
+  stt: string;
   date: string;
   amount: number;
   subject: string;
 
-  constructor(id: number, date: string, amount: number, subject: string) {
-    this.id = id;
+  constructor(stt: string, date: string, amount: number, subject: string) {
+    this.stt = stt;
     this.date = date;
     this.amount = amount;
     this.subject = subject;
@@ -107,7 +107,7 @@ export default function Home() {
         <table className="table-auto w-full">
           <thead>
             <tr>
-              <th className="px-4 py-2">id</th>
+              <th className="px-4 py-2">stt/id</th>
               <th className="px-4 py-2">date</th>
               <th className="px-4 py-2">amount</th>
               <th className="px-4 py-2">content</th>
@@ -117,7 +117,7 @@ export default function Home() {
           {result.total > 0 && 
             result.result.map((item, index) => (
             <tr key={index}>
-              <td className="border px-4 py-2">{item.id}</td>
+              <td className="border px-4 py-2">{item.stt}</td>
               <td className="border px-4 py-2">{item.date}</td>
               <td className="border px-4 py-2">{item.amount}</td>
               <td className="border px-4 py-2">{item.subject}</td>
