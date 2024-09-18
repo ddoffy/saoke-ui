@@ -46,12 +46,21 @@ export default function Home() {
         },
       });
       if (!response.ok) {
-        throw new Error("Something went wrong");
+        if (response.status === 404) {
+          setError("No transactions found");
+        } else if (response.status === 400) {
+          const result = await response.json();
+          setError(result?.detail?.message);
+        }
+        else {
+          throw new Error("Failed to fetch data");
+        }
+      } else {
+        const result = await response.json();
+        const data = new Result(result.result, result.total);
+        setResult(data);
+        setError(""); // Clear any previous errors
       }
-      const result = await response.json();
-      const data = new Result(result.result, result.total);
-      setResult(data);
-      setError(""); // Clear any previous errors
     } catch (err) {
       if (err instanceof TypeError) {
         setError("Failed to fetch data");
