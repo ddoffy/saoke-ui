@@ -14,8 +14,13 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Sao ke | Doffy Law",
-  description: "Sao ke | Doffy Law",
+  title: "Doffy Law | Sao ke - var check - giao dich - ung ho - mien bac - bao lu - yagi",
+  description: "Sao ke | Doffy Law | Tìm kiếm sao kê - giao dịch - var check - ủng hộ bão lũ yagi - miền bắc",
+  keywords: ["Sao ke", "Doffy Law", "var check", "giao dich", "ung ho", "mien bac", "bao lu", "yagi"],
+  viewport: "width=device-width, initial-scale=1",
+  creator: "D. Doffy",
+  publisher: "Doffy Law",
+  authors: { name: "D. Doffy", url: 'https://doffylaw.org' },
 };
 
 export default function RootLayout({

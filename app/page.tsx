@@ -1,6 +1,5 @@
-'use client';
+"use client";
 import { useState } from "react";
-
 // item structure to hold the data
 class Item {
   stt: string;
@@ -33,7 +32,7 @@ export default function Home() {
   const [error, setError] = useState("");
   const [result, setResult] = useState(new Result([], 0));
 
-// Function to fetch data based on the search query
+  // Function to fetch data based on the search query
   const fetchData = async () => {
     try {
       setLoading(true);
@@ -47,7 +46,7 @@ export default function Home() {
         },
       });
       if (!response.ok) {
-        throw new Error('Something went wrong');
+        throw new Error("Something went wrong");
       }
       const result = await response.json();
       const data = new Result(result.result, result.total);
@@ -56,11 +55,9 @@ export default function Home() {
     } catch (err) {
       if (err instanceof TypeError) {
         setError("Failed to fetch data");
-      }
-      else if (err instanceof Error) {
+      } else if (err instanceof Error) {
         setError(err.message);
-      }
-      else {
+      } else {
         setError("Something went wrong");
       }
       setResult(new Result([], 0)); // Clear any previous data
@@ -81,6 +78,11 @@ export default function Home() {
   return (
     <div className="grid grid-rows-[] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
       <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
+        {/* Add a title */}
+        <h1 className="text-3xl font-bold text-gray-800 dark:text-gray-200">
+          Tìm kiếm sao kê - giao dịch - var check - ủng hộ bão lũ yagi - miền
+          bắc
+        </h1>
         {/* Add a table to display data search   */}
         <div className="flex items-center gap-4">
           <input
@@ -96,7 +98,10 @@ export default function Home() {
               }
             }}
           />
-          <button className="px-4 py-2 bg-blue-500 text-white rounded-md" onClick={handleSearchClick}>
+          <button
+            className="px-4 py-2 bg-blue-500 text-white rounded-md"
+            onClick={handleSearchClick}
+          >
             search
           </button>
         </div>
@@ -104,26 +109,39 @@ export default function Home() {
           {loading && <p>Loading...</p>}
           {error && <p>{error}</p>}
         </div>
-        <table className="table-auto w-full">
-          <thead>
-            <tr>
-              <th className="px-4 py-2">stt/id</th>
-              <th className="px-4 py-2">date</th>
-              <th className="px-4 py-2">amount</th>
-              <th className="px-4 py-2">content</th>
-            </tr>
-          </thead>
-          <tbody>
-          {result.total > 0 && 
-            result.result.map((item, index) => (
-            <tr key={index}>
-              <td className="border px-4 py-2">{item.stt}</td>
-              <td className="border px-4 py-2">{item.date}</td>
-              <td className="border px-4 py-2">{item.amount}</td>
-              <td className="border px-4 py-2">{item.subject}</td>
-            </tr>))}
-          </tbody>
-        </table>
+        <div className="flex items-center gap-4">
+          {/* show total number of transactions */}
+          <p className="text-lg text-gray-700 dark:text-gray-300">
+            {/* display with specific locale */}
+            Total transactions: {result.total.toLocaleString("en-US")}
+          </p>
+        </div>
+        <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+          <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+            <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+              <tr>
+                <th className="px-4 py-2">stt/id</th>
+                <th className="px-4 py-2">date</th>
+                <th className="px-4 py-2">amount</th>
+                <th className="px-4 py-2">content</th>
+              </tr>
+            </thead>
+            <tbody>
+              {result.total > 0 &&
+                result.result.map((item, index) => (
+                  <tr
+                    key={index}
+                    className="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700"
+                  >
+                    <td className="px-4 py-2">{item.stt}</td>
+                    <td className="px-4 py-2">{item.date}</td>
+                    <td className="px-4 py-2">{item.amount}</td>
+                    <td className="px-4 py-2">{item.subject}</td>
+                  </tr>
+                ))}
+            </tbody>
+          </table>
+        </div>
       </main>
     </div>
   );
