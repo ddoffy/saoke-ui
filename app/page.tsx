@@ -1,17 +1,20 @@
 "use client";
 import { useState } from "react";
+
 // item structure to hold the data
 class Item {
   stt: string;
   date: string;
   amount: number;
   subject: string;
+  provider: string;
 
-  constructor(stt: string, date: string, amount: number, subject: string) {
+  constructor(stt: string, date: string, amount: number, subject: string, provider: string) {
     this.stt = stt;
     this.date = date;
     this.amount = amount;
     this.subject = subject;
+    this.provider = provider;
   }
 }
 
@@ -133,6 +136,7 @@ export default function Home() {
                 <th className="px-4 py-2">date</th>
                 <th className="px-4 py-2">amount</th>
                 <th className="px-4 py-2">content</th>
+                <th className="px-4 py-2">provider</th>
               </tr>
             </thead>
             <tbody>
@@ -146,6 +150,7 @@ export default function Home() {
                     <td className="px-4 py-2">{item.date}</td>
                     <td className="px-4 py-2">{item.amount}</td>
                     <td className="px-4 py-2">{item.subject}</td>
+                    <td className="px-4 py-2">{item.provider}</td>
                   </tr>
                 ))}
             </tbody>
